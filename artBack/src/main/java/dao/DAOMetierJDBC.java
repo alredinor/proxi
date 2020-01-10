@@ -10,13 +10,15 @@ import java.util.List;
 
 import model.Metier;
 
-public class DAOMetierJDBC implements DAO<Metier,Integer> {
+public class DAOMetierJDBC implements DAOMetier {
 	
 	/*ReadbyId => select id*/
 	@Override
-	public Metier selectById(Integer id) throws SQLException, ClassNotFoundException {
+	public Metier selectById(Integer id) {
 		
-		Class.forName("com.mysql.jdbc.Driver"); 
+		Metier c=null;
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root",""); 
 		
@@ -27,8 +29,6 @@ public class DAOMetierJDBC implements DAO<Metier,Integer> {
 		
 		ResultSet rc =pc.executeQuery();
 		
-		Metier c=null;
-		
 		while(rc.next()) {
 			
 			 c = new Metier (id,rc.getString("titre_metier"));
@@ -36,16 +36,21 @@ public class DAOMetierJDBC implements DAO<Metier,Integer> {
 			 }
 		
 		conn.close();
-		
+		}catch(Exception e) {
+			e.printStackTrace();
+			}
 		return c;
 	}
 	
 	
 	/*ReadAll*/
 	@Override
-	public List<Metier> selectAll() throws SQLException, ClassNotFoundException {
+	public List<Metier> selectAll() {
 		
-		Class.forName("com.mysql.jdbc.Driver");
+		List<Metier> listeSec = new ArrayList();
+		Metier c=null;
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root","");
 		
@@ -54,9 +59,6 @@ public class DAOMetierJDBC implements DAO<Metier,Integer> {
 		
 		ResultSet rc =pc.executeQuery(); 
 		
-		Metier c=null;
-		
-		List<Metier> listeSec = new ArrayList();
 		
 		//id_metier, titre_metier
 		while(rc.next()) {
@@ -67,15 +69,15 @@ public class DAOMetierJDBC implements DAO<Metier,Integer> {
 			 }
 		
 		conn.close();
-		
+		}catch(Exception e) {e.printStackTrace();}
 		return listeSec;
 	}
 	
 	
 	@Override
-	public Integer insert(Metier c) throws SQLException, ClassNotFoundException {
-		
-		Class.forName("com.mysql.jdbc.Driver");
+	public Integer insert(Metier c)  {
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root","");
 		
@@ -89,14 +91,15 @@ public class DAOMetierJDBC implements DAO<Metier,Integer> {
 		pc.executeUpdate();
 		pc.close();
 		conn.close();
+		}catch(Exception e) {e.printStackTrace();}
 		return null;
 		
 	}
 	
 	@Override
-	public void update(Metier c) throws SQLException, ClassNotFoundException {
-		
-		Class.forName("com.mysql.jdbc.Driver"); //chargement du pilote jdbc
+	public void update(Metier c)  {
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver"); //chargement du pilote jdbc
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root",""); //creation de l'objet connection à la base de donnée
 		
@@ -108,14 +111,15 @@ public class DAOMetierJDBC implements DAO<Metier,Integer> {
 		pc.executeUpdate();
 		pc.close();
 		conn.close();
-		
+		}catch(Exception e) {e.printStackTrace();}
 	}
 
 
 	@Override
-	public void delete(Integer id) throws SQLException, ClassNotFoundException {
+	public void delete(Integer id) {
 		
-		Class.forName("com.mysql.jdbc.Driver"); 
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root",""); 
 		
@@ -126,7 +130,15 @@ public class DAOMetierJDBC implements DAO<Metier,Integer> {
 		pc.executeUpdate();
 		pc.close();
 		conn.close();
+		}catch(Exception e) {e.printStackTrace();}
 		
+	}
+
+
+	@Override
+	public List<Metier> selectById(String titre_metier) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

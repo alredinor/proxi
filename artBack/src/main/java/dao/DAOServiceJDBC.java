@@ -10,13 +10,16 @@ import java.util.List;
 
 import model.Service;
 
-public class DAOServiceJDBC implements DAO<Service,Integer> {
+public class DAOServiceJDBC implements DAOService {
 	
 	/*ReadbyId => select id*/
 	@Override
-	public Service selectById(Integer id) throws SQLException, ClassNotFoundException {
+	public Service selectById(Integer id) {
 		
-		Class.forName("com.mysql.jdbc.Driver"); 
+		Service c=null;
+		
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root",""); 
 		
@@ -27,8 +30,6 @@ public class DAOServiceJDBC implements DAO<Service,Integer> {
 		
 		ResultSet rc =pc.executeQuery();
 		
-		Service c=null;
-		
 		while(rc.next()) {
 			
 			 c = new Service (id,rc.getInt("id_metier"),rc.getString("titre_service"));
@@ -36,16 +37,22 @@ public class DAOServiceJDBC implements DAO<Service,Integer> {
 			 }
 		
 		conn.close();
-		
+		}catch(Exception e) {
+			e.printStackTrace();
+			}
 		return c;
 	}
 	
 	
 	/*ReadAll*/
 	@Override
-	public List<Service> selectAll() throws SQLException, ClassNotFoundException {
+	public List<Service> selectAll() {
+		Service c=null;
 		
-		Class.forName("com.mysql.jdbc.Driver");
+		List<Service> listeSec = new ArrayList();
+		
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root","");
 		
@@ -54,10 +61,8 @@ public class DAOServiceJDBC implements DAO<Service,Integer> {
 		
 		ResultSet rc =pc.executeQuery(); 
 		
-		Service c=null;
 		
-		List<Service> listeSec = new ArrayList();
-		
+	
 		//id_service, id_metier, titre_service
 		while(rc.next()) {
 			
@@ -67,15 +72,16 @@ public class DAOServiceJDBC implements DAO<Service,Integer> {
 			 }
 		
 		conn.close();
-		
+		}catch(Exception e) {e.printStackTrace();}
 		return listeSec;
 	}
 	
 	
 	@Override
-	public Integer insert(Service c) throws SQLException, ClassNotFoundException {
+	public Integer insert(Service c)  {
 		
-		Class.forName("com.mysql.jdbc.Driver");
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root","");
 		
@@ -90,15 +96,16 @@ public class DAOServiceJDBC implements DAO<Service,Integer> {
 		pc.executeUpdate();
 		pc.close();
 		conn.close();
+		}catch(Exception e) {e.printStackTrace();}
 		return null;
 		
 	}
 	
 	@Override
-	public void update(Service c) throws SQLException, ClassNotFoundException {
+	public void update(Service c)  {
 		// TODO Auto-generated method stub
-		
-		Class.forName("com.mysql.jdbc.Driver"); //chargement du pilote jdbc
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver"); //chargement du pilote jdbc
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root",""); //creation de l'objet connection à la base de donnée
 		
@@ -111,14 +118,14 @@ public class DAOServiceJDBC implements DAO<Service,Integer> {
 		pc.executeUpdate();
 		pc.close();
 		conn.close();
-		
+		}catch(Exception e) {e.printStackTrace();}
 	}
 
 
 	@Override
-	public void delete(Integer id) throws SQLException, ClassNotFoundException {
-		
-		Class.forName("com.mysql.jdbc.Driver"); 
+	public void delete(Integer id)  {
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root",""); 
 		
@@ -129,6 +136,7 @@ public class DAOServiceJDBC implements DAO<Service,Integer> {
 		pc.executeUpdate();
 		pc.close();
 		conn.close();
+		}catch(Exception e) {e.printStackTrace();}
 		
 	}
 

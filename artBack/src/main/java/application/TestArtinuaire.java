@@ -11,10 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import dao.DAOCompteJDBC;
+import dao.DAODemande;
 import dao.DAODemandeJDBC;
 import dao.DAODetailJDBC;
 import dao.DAOMetierJDBC;
 import dao.DAOServiceJDBC;
+import dao.FactoryDemande;
 import model.*;
 
 public class TestArtinuaire {
@@ -233,15 +235,25 @@ System.out.println(connexion);
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		DAODemande daoD= FactoryDemande.getDAODemande();
+		//String id=request.getParameter("id");
 		
+		//Demande D=daoD.selectById(Integer.parseInt("1"));
+		//System.out.println(D);
+		
+		
+		
+		/*
 		DAOCompteJDBC daoCompte = new DAOCompteJDBC();
 		DAODemandeJDBC daoDemande = new DAODemandeJDBC();
 		DAODetailJDBC daoDetail = new DAODetailJDBC();
 		DAOMetierJDBC daoMetier = new DAOMetierJDBC();
 		DAOServiceJDBC daoService = new DAOServiceJDBC();
+		*/
 		
-		
-		menuConnect();
+		//DAODemande daoD= FactoryDemande.getDAODemande();
+		//daoD.selectAll();
+		//menuConnect();
 		
 		
 		/*selectById

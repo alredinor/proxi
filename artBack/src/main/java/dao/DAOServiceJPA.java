@@ -8,25 +8,25 @@ import model.Service;
 public class DAOServiceJPA implements DAOService{
 
 	@Override
-	public List<Service> selectAll() throws SQLException, ClassNotFoundException {
+	public List<Service> selectAll()  {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Integer insert(Service object) throws SQLException, ClassNotFoundException {
+	public Integer insert(Service object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void update(Service object) throws SQLException, ClassNotFoundException {
+	public void update(Service object)  {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(Integer id) throws SQLException, ClassNotFoundException {
+	public void delete(Integer id)  {
 		// TODO Auto-generated method stub
 		
 	}

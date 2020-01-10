@@ -28,12 +28,10 @@ public class Artisan extends Compte {
 		setCode_postal(TestArtinuaire.saisieString("Saisir un code postal"));
 		setType_compte(TestArtinuaire.saisieString("Saisir nouveau le type de compte"));
 		
-		//Compte p=new Compte(logN,mdpN,mail,rue,vil,cp,typeC,true);
+		
 		DAOCompteJDBC DAOc =new DAOCompteJDBC();
 		DAOc.update(this);
-//		Compte p=new Compte(logN,mdpN,mail,rue,vil,cp,typeC,true);
-//		
-//		Artinuaire.getInstance().addCompte(p);
+
 		
 	}
 	

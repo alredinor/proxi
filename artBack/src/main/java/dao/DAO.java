@@ -5,10 +5,10 @@ import java.util.List;
 
 public interface DAO<T,K> {
 	
-	public T selectById(K id) throws SQLException, ClassNotFoundException;
-	public List<T> selectAll() throws SQLException, ClassNotFoundException;
-	public K insert(T object) throws SQLException, ClassNotFoundException;
-	public void update(T object) throws SQLException, ClassNotFoundException;
-	public void delete(K id) throws SQLException, ClassNotFoundException;
+	public T selectById(K id) ;
+	public List<T> selectAll();
+	public K insert(T object) ;
+	public void update(T object);
+	public void delete(K id) ;
 
 }

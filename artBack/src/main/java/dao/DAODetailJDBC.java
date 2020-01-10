@@ -14,9 +14,12 @@ public class DAODetailJDBC implements DAO<Detail,Integer> {
 	
 	/*ReadbyId => select id*/
 	@Override
-	public Detail selectById(Integer id) throws SQLException, ClassNotFoundException {
+	public Detail selectById(Integer id)  {
 		
-		Class.forName("com.mysql.jdbc.Driver"); 
+		Detail c=null;
+		
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root",""); 
 		
@@ -27,7 +30,7 @@ public class DAODetailJDBC implements DAO<Detail,Integer> {
 		
 		ResultSet rc =pc.executeQuery();
 		
-		Detail c=null;
+		
 		
 		while(rc.next()) {
 			
@@ -36,16 +39,20 @@ public class DAODetailJDBC implements DAO<Detail,Integer> {
 			 }
 		
 		conn.close();
-		
+		}catch(Exception e) {e.printStackTrace();}
 		return c;
 	}
 	
 	
 	/*ReadAll*/
 	@Override
-	public List<Detail> selectAll() throws SQLException, ClassNotFoundException {
+	public List<Detail> selectAll() {
 		
-		Class.forName("com.mysql.jdbc.Driver");
+		Detail c=null;
+		List<Detail> listeSec = new ArrayList();
+		
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root","");
 		
@@ -54,9 +61,7 @@ public class DAODetailJDBC implements DAO<Detail,Integer> {
 		
 		ResultSet rc =pc.executeQuery(); 
 		
-		Detail c=null;
 		
-		List<Detail> listeSec = new ArrayList();
 		
 		//id_demande, id_service, statut
 		while(rc.next()) {
@@ -67,15 +72,16 @@ public class DAODetailJDBC implements DAO<Detail,Integer> {
 			 }
 		
 		conn.close();
-		
+		}catch(Exception e) {e.printStackTrace();}
 		return listeSec;
 	}
 	
 	
 	@Override
-	public Integer insert(Detail c) throws SQLException, ClassNotFoundException {
+	public Integer insert(Detail c) {
 		
-		Class.forName("com.mysql.jdbc.Driver");
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root","");
 		
@@ -90,15 +96,17 @@ public class DAODetailJDBC implements DAO<Detail,Integer> {
 		pc.executeUpdate();
 		pc.close();
 		conn.close();
+		}catch(Exception e) {e.printStackTrace();}
 		return null;
 		
 	}
 	
 	@Override
-	public void update(Detail c) throws SQLException, ClassNotFoundException {
+	public void update(Detail c)  {
 		// TODO Auto-generated method stub
 		
-		Class.forName("com.mysql.jdbc.Driver"); //chargement du pilote jdbc
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver"); //chargement du pilote jdbc
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root",""); //creation de l'objet connection à la base de donnée
 		
@@ -111,14 +119,15 @@ public class DAODetailJDBC implements DAO<Detail,Integer> {
 		pc.executeUpdate();
 		pc.close();
 		conn.close();
-		
+		}catch(Exception e) {e.printStackTrace();}
 	}
 
 
 	@Override
-	public void delete(Integer id) throws SQLException, ClassNotFoundException {
+	public void delete(Integer id) {
 		
-		Class.forName("com.mysql.jdbc.Driver"); 
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root",""); 
 		
@@ -129,7 +138,7 @@ public class DAODetailJDBC implements DAO<Detail,Integer> {
 		pc.executeUpdate();
 		pc.close();
 		conn.close();
-		
+		}catch(Exception e) {e.printStackTrace();}
 	}
 
 

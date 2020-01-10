@@ -10,25 +10,27 @@ import java.util.List;
 
 import model.Demande;
 
-public class DAODemandeJDBC implements DAO<Demande,Integer> {
+public class DAODemandeJDBC implements DAODemande{
 	
 	/*ReadbyId => select id*/
 	@Override
-	public Demande selectById(Integer id) throws SQLException, ClassNotFoundException {
+	public Demande selectById(Integer id){
 		
 		//int id_demande, String message, int id_service, int id_compte_C, int id_compte_A
 		
-		Class.forName("com.mysql.jdbc.Driver"); 
-		
+		Demande c=null;
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root",""); 
 		
-		PreparedStatement pc = conn.prepareStatement("select * from Demande where id_demande=? and message=?,id_service=?,id_compte_C=?,id_compte_A=?"); 
+		PreparedStatement pc = conn.prepareStatement("select * from Demande where id_demande=?"); 
 		
 		pc.setInt(1, id); 
 		
 		ResultSet rc =pc.executeQuery();
 		
-		Demande c=null; 
+		
+		
 		
 		while(rc.next()) {
 			
@@ -37,27 +39,29 @@ public class DAODemandeJDBC implements DAO<Demande,Integer> {
 			 }
 		
 		conn.close();
-		
+		}catch(Exception e) {
+			e.printStackTrace();
+			}
 		return c;
 	}
 	
 	
 	/*ReadAll*/
 	@Override
-	public List<Demande> selectAll() throws SQLException, ClassNotFoundException {
+	public List<Demande> selectAll() {
 		
-		Class.forName("com.mysql.jdbc.Driver");
+		Demande c=null;
+		List<Demande> listeSec = new ArrayList();
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root","");
 		
-		PreparedStatement pc = conn.prepareStatement("select * from Demande where id_demande=?"); 
+		PreparedStatement pc = conn.prepareStatement("select * from Demande"); 
+		
 		
 		
 		ResultSet rc =pc.executeQuery(); 
-		
-		Demande c=null;
-		
-		List<Demande> listeSec = new ArrayList();
 		
 		while(rc.next()) {
 			
@@ -67,16 +71,17 @@ public class DAODemandeJDBC implements DAO<Demande,Integer> {
 			 }
 		
 		conn.close();
-		
+		}catch(Exception e) {e.printStackTrace();}
 		return listeSec;
 	}
 	
 	
 	@Override
-	public Integer insert(Demande c) throws SQLException, ClassNotFoundException {
+	public Integer insert(Demande c) {
 		// TODO Auto-generated method stub
 		
-		Class.forName("com.mysql.jdbc.Driver");
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root","");
 		
@@ -91,14 +96,15 @@ public class DAODemandeJDBC implements DAO<Demande,Integer> {
 		pc.executeUpdate();
 		pc.close();
 		conn.close();
+		}catch(Exception e) {e.printStackTrace();}
 		return null;
 	}
 	
 	@Override
-	public void update(Demande c) throws SQLException, ClassNotFoundException {
+	public void update(Demande c)  {
 		
-		
-		Class.forName("com.mysql.jdbc.Driver"); //chargement du pilote jdbc
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver"); //chargement du pilote jdbc
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root",""); //creation de l'objet connection à la base de donnée
 		
@@ -112,14 +118,15 @@ public class DAODemandeJDBC implements DAO<Demande,Integer> {
 		pc.executeUpdate();
 		pc.close();
 		conn.close();
-		
+		}catch(Exception e) {e.printStackTrace();}
 	}
 
 
 	@Override
-	public void delete(Integer id) throws SQLException, ClassNotFoundException {
+	public void delete(Integer id)  {
 		
-		Class.forName("com.mysql.jdbc.Driver"); 
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/artinuaire","root",""); 
 		
@@ -130,7 +137,7 @@ public class DAODemandeJDBC implements DAO<Demande,Integer> {
 		pc.executeUpdate();
 		pc.close();
 		conn.close();
-		
+		}catch(Exception e) {e.printStackTrace();}
 	}
 
 
