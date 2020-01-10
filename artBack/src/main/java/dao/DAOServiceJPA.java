@@ -8,12 +8,6 @@ import model.Service;
 public class DAOServiceJPA implements DAOService{
 
 	@Override
-	public Service selectById(Integer id) throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Service> selectAll() throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
@@ -37,4 +31,13 @@ public class DAOServiceJPA implements DAOService{
 		
 	}
 
+	@Override
+	public Service selectById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	
 }
