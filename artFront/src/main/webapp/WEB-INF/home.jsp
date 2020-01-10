@@ -39,29 +39,9 @@
 
 	<div id="content" class="row">
 		<div class="col-12 col-lg-1">
-			<form name="Formulaire" action="login">
-
-				<fieldset>
-					<legend>Informations personnelles</legend>
-					<table>
-
-						<tr>
-							<td>Identifiant</td>
-							<td><input id="identifiant" name="identifiant" required placeholder="identifiant"></td>
-						</tr>
-
-						<tr>
-							<td>Mot de passe</td>
-							<td><input id="mdp" name="mdp" type="password" placeholder="*********"></td>
-						</tr>
-						<tr>
-							<td><input type="submit" value="Valider"></td>
-						</tr>
-							
-					</table>
-				</fieldset>
-			</form>
-			
+		
+							<a href="login"><td><button>Connexion</button></td></a>
+					
 			
 		</div>
 	</div>
