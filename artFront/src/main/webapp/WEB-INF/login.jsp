@@ -54,6 +54,10 @@
 							<td>Mot de passe</td>
 							<td><input type="password" placeholder="*********"></td>
 						</tr>
+						<tr>
+							<td><input type="submit" value="Connexion"></td>
+						</tr>
+							
 					</table>
 				</fieldset>
 
