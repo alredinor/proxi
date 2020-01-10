@@ -1,0 +1,42 @@
+@charset "UTF-8";
+body
+{
+	background: lightgrey fixed top;
+}
+
+
+#banniere
+{
+	min-height: 90px;
+	background: #808040;
+	background-size: 100% 100%;
+}
+
+
+#logo img
+{
+	position: absolute;
+	top:0;
+	max-height: 110px;
+	max-width: 130px;
+}
+#banniere ul{
+	    padding-top: 35px;
+}
+#content
+{
+	background-image: url("img/font-ile-de-france.jpg");
+	background-size: 100% 100%;
+}
+
+
+#footer
+{
+	background-color: black;
+	text-align: center;
+	min-height: 60px;
+	color:white;
+	padding-top: 20px;
+	position: fixed;
+	bottom: 0;
+}
