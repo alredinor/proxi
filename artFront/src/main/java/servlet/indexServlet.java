@@ -15,6 +15,9 @@ public class indexServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//DAODemande daoD= FactoryDemande.getDAODemande();
+		//List<Demande> maListe= daoD.selectAll();
+		//System.out.println(maListe);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
 
