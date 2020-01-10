@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class indexServlet
  */
-@WebServlet("/index")
+@WebServlet("/login")
 public class loginServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 	}
 
 	
