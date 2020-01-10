@@ -7,5 +7,5 @@ import model.Service;
 public interface DAOService extends DAO<Service,Integer>
 
 {
-	public Service selectById(Integer id);
+	//public Service selectById(Integer id);
 }
